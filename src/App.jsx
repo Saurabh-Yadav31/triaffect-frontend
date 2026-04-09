@@ -16,11 +16,18 @@ import NotFound  from "@/pages/NotFound";
 
 function AppLayout({ children, showSidebar }) {
   return (
-    <div className="min-h-screen" style={{ backgroundColor: "var(--color-bg)", color: "var(--color-text)" }}>
+    <div style={{ minHeight: "100vh", backgroundColor: "var(--color-bg)", color: "var(--color-text)" }}>
       <Navbar />
-      <div className="flex pt-16">
+      <div style={{ display: "flex", paddingTop: "64px" }}>
         {showSidebar && <Sidebar />}
-        <main className={`flex-1 ${showSidebar ? "ml-56" : ""} min-h-[calc(100vh-4rem)]`}>
+        <main style={{
+          flex: 1,
+          marginLeft: showSidebar ? "288px" : "0px",
+          minHeight: "calc(100vh - 64px)",
+          transition: "margin-left 200ms ease",
+          width: "100%",
+          boxSizing: "border-box"
+        }}>
           {children}
         </main>
       </div>
